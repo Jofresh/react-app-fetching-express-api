@@ -7,23 +7,28 @@ function App() {
 
   useEffect(() => {
     axios.get("https://jofreshapi.herokuapp.com/users").then((res) => {
+      console.log();
       setUsers(res.data);
     });
   }, []);
 
   return (
-    <div class="app">
-      <h1 class="app__header">Hello!</h1>
-      <ul class="app__users">
+    <div className="app">
+      <h1 className="app__header">Hello!</h1>
+      <ul className="app__list">
         {users.map((user) => (
-          <li class="user" key={user.id}>
+          <li className="list__item" key={user.id}>
             {user.name}
           </li>
         ))}
       </ul>
-      <p class="app__footer">
+      <p className="app__footer">
         Fetched from{" "}
-        <a href="https://jofreshapi.herokuapp.com/api-docs/" target="_blank">
+        <a
+          href="https://jofreshapi.herokuapp.com/api-docs/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Jofresh API
         </a>
       </p>
