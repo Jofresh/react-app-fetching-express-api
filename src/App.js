@@ -2,12 +2,17 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+
 function App() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("https://jofreshapi.herokuapp.com/users").then((res) => {
-      console.log();
+      setInterval(() => {
+        setLoading(false);
+      }, 500);
       setUsers(res.data);
     });
   }, []);
@@ -15,13 +20,21 @@ function App() {
   return (
     <div className="app">
       <h1 className="app__header">Hello!</h1>
-      <ul className="app__list">
-        {users.map((user) => (
-          <li className="list__item" key={user.id}>
-            {user.name}
-          </li>
-        ))}
-      </ul>
+
+      <div className="app__body">
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <ul className="app__list">
+            {users.map((user) => (
+              <li className="list__item" key={user.id}>
+                {user.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
       <p className="app__footer">
         Fetched from{" "}
         <a
