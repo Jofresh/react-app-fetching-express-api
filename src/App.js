@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 const API_URL = "https://jofreshapi.herokuapp.com/users"
@@ -11,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(API_URL, { headers: { 'Authorization': `Bearer ${process.env.SECRET_KEY || "whoops"}` } }).then((res) => {
+    axios.get(API_URL).then((res) => {
       setInterval(() => {
         setLoading(false);
       }, 500);
