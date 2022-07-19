@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     axios.get(API_URL).then((res) => {
-      setInterval(() => {
+      setTimeout(() => {
         setLoading(false);
       }, 500);
       setUsers(res.data);
