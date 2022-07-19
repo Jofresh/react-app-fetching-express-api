@@ -11,10 +11,10 @@ function App() {
 
   useEffect(() => {
     axios.get(API_URL).then((res) => {
+      setUsers(res.data);
       setTimeout(() => {
         setLoading(false);
       }, 500);
-      setUsers(res.data);
     });
   }, []);
 
